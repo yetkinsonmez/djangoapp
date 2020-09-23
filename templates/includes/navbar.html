@@ -1,0 +1,51 @@
+{% load static %}
+<head>    
+<link rel="stylesheet" href="{% static 'css/navbar.css'%}">
+</head>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  &nbsp;
+  <a class="navbar-brand" href="{% url 'main' %}"><h4 style="font-weight: 200;">Blogy</h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      &nbsp;
+      <li>
+        <a class="nav-link" href="{% url 'article:articles' %}">Articles</a>
+      </li>
+      &nbsp;&nbsp;
+      <li>
+        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+      </li>
+    </ul>
+    <!--<ul class="navbar-nav mc-auto">
+      <div class="nav-logo-wrap local-scroll">
+        <a href="/" class="logo">
+            <img src="../../static/images/logo2.png" alt="Company logo" style="width:120px;"/> yatayı geniş bi logo ekle
+        </a>
+      </div>
+    </ul>-->
+    <ul class="navbar-nav ml-auto">
+      
+        {% if request.user.is_authenticated %}
+        <li>
+          <a class="nav-link" href="{% url 'user:dashboard' %}">Dashboard</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'user:profile' %}">Profile</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="nav-link" href="{% url 'user:register' %}">Register</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'user:login' %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>

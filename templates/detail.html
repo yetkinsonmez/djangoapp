@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block blogbody %}
+
+<div class="jumbotron text-center">
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{article.title}}</h1>
+        <hr>
+        <!-- Author -->
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <p class="lead">
+                    Author: {{article.author}}
+                </p>
+            </div>
+                <div class="col-4">
+                    <img class= "rounded" src="{{ article.author.profile.image.url }}" style="width:100%;max-width:50px">
+                </div>
+            </div>  
+
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{article.created_date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        
+        {% if article.article_image %}
+            <img class="img-fluid rounded" src="{{article.article_image.url}}" alt="">
+
+            <hr>
+        {% endif %}
+
+        <!-- Post Content -->
+        <p class="lead">
+            {{article.content|safe}}
+        </p>
+
+        <hr>
+        </div>
+    </div>
+
+</div>
+    
+<div class="jumbotron">    
+    <h3>Comments</h3>
+    <hr>
+    {% if comments %}
+        {% for comment in comments %}
+        <div class="media mb-4">
+            <div class="media-body">
+            <h5 class="mt-0"><strong> User: </strong>{{comment.comment_author}}</h5>
+            <div style="border-left: thick solid #808080;">
+                <p>&nbsp;&nbsp;<kbd style="font-size: 12px;">{{comment.comment_date}}</kbd></p>
+                <h6 style="font-size: 18px;">&nbsp;&nbsp;{{comment.comment_content}}</h6>
+            </div>
+            </div>
+        </div>
+        <hr style="height:2px;border-width:0;color:#808080;background-color:gray">
+        {% endfor %}
+    {% else %}
+        <div class = "alert alert-danger">
+            No comment yet! Be the first to comment on this article!
+        </div>
+    {% endif %}
+</div>
+
+      <!-- Comments Form -->
+      <div class="card my-4">
+        <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card-body">
+          <form method = "POST" action="{% url 'article:comment' article.id%}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="formGroupExampleInput">Name</label>
+                <input name = name type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="formcomment">Comment</label>
+              <textarea name = body id = "formcomment" class="form-control" rows="3" placeholder="Enter your comment"></textarea>
+            </div> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+
+{% endblock %}

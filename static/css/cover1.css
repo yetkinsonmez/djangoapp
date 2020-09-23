@@ -1,0 +1,7 @@
+body {
+    background-image: url(/static/images/sample1.jpg);
+    background-size: 1800px 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}

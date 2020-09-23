@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/cover1.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Blogy</title>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+    <br>
+    <br>
+    <div style="margin-top: 15px;">   
+
+        {% if messages %}
+
+            {% for message in messages %}
+   
+                {% if message.tags == "info" %}
+                    <div class="alert alert-danger">{{ message }}</div> <!--info mesajları artık danger(kırmızı)-->
+                {% else %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endif %}
+                
+            {% endfor %}
+
+        {% endif %}
+
+    </div>
+
+    <div style="margin-top: 60px; margin-bottom:100px" class="container">   
+            {% block blogbody %}
+
+            {% endblock %}
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/jquery-3.5.1.min.js'%}"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block blogbody %}
+<h3>Your Dashboard</h3>
+<hr>
+{% if articles %}
+    <div class="jumbotron" style="opacity: 0.93;">
+        <a class="btn btn-danger" href="{% url 'article:addArticle' %}">Add article</a>
+        <br>
+        <hr>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}                
+            <tr>
+                <th scope="row">{{article.id}}</th>
+                <td><a href="{% url 'article:detail' article.id %}">{{article.title}}</a></td>
+                <td>{{article.author.username}}</td>
+                <td>{{article.created_date}}</td>
+                <td>
+                    <a href="{% url 'article:updateArticle' article.id %}" class="btn btn-danger">Update</a>
+                </td>
+                <td>
+                    <a href="{% url 'article:deleteArticle' article.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    </div>
+{% else %}
+<div class="jumbotron">
+    <a class="btn btn-danger" href="{% url 'article:addArticle' %}">Add article</a>
+    <br>
+    <hr>
+    <div class="alert alert-danger">
+        No article was found
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

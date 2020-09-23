@@ -1,0 +1,1 @@
+"# Django Blogy App" 

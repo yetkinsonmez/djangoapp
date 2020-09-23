@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block blogbody %}
+
+<div class="jumbotron text-center" style="opacity: 0.9;">
+    <h2>Welcome to Blogy!</h2>
+    <p>You can easily write essays and publish them through Blogy</p>
+    <hr>
+    <a href="{% url 'main' %}" class="logo">
+        <img src="../../static/images/logo2.png" alt="Company logo" style="width:100%; max-width:600px;"/> <!--yatayı geniş bi logo ekle-->
+    </a>
+    <hr>
+    <a href="{% url 'main' %}" class="logo">
+        <img src="../../static/images/logo1.png" alt="Company logo" style="width:100%; max-width:600px;"/> <!--yatayı geniş bi logo ekle-->
+    </a>
+    <hr>
+    <a href="{% url 'main' %}" class="logo">
+        <img src="../../static/images/logo3.png" alt="Company logo" style="width:100%; max-width:600px;"/> <!--yatayı geniş bi logo ekle-->
+    </a>
+    <hr>
+    <a href="{% url 'main' %}" class="logo">
+        <img src="../../static/images/logo4.png" alt="Company logo" style="width:100%; max-width:600px;"/> <!--yatayı geniş bi logo ekle-->
+    </a>
+</div>
+    <br>
+{% endblock %}

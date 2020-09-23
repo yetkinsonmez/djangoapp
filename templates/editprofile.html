@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block blogbody %}
+<h3>{{request.user.username}}'s Profile</h3>
+<hr>
+<div class="jumbotron" style="opacity: 0.9;">
+    <div class="content-section">
+        <div class="media">
+            <img class= "w3-image" src="{{ user.profile.image.url }}" style="width:100%; max-width:300px;">
+                <div class="media-body">        
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4>&nbsp;&nbsp;Infos</h4>
+                            <hr>
+                            <p style ="font-size:20px" class="col-sm">Username : {{user.username}}</p>
+                            <p style ="font-size:20px" class="col-sm">Email: {{user.email}}</p>           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <br>
+            <button type="submit" class="btn btn-danger">Update</button>
+        </form>
+    </div>
+
+{% endblock %}
